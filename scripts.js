@@ -1,11 +1,25 @@
 
 
+let btn=document.querySelector(".btn-task");
+// btn.setAttribute("data-bs-toggle","modal") ;
+// btn.setAttribute("href","#modal-task");
 
-let gp=document.createElement("button");
-gp.classList.add("mt-1","bg-white","mb-1","pb-1","d-flex", "border-0", "text-start", "w-100","tt")
-gp.setAttribute("data-bs-toggle","modal") ;
-gp.setAttribute("data-bs-target","#taskBtn");
-gp.setAttribute("draggable","true");
+btn.setAttribute("draggable","true");
+
+// btn.onclick()
+// {
+ 
+//     title.value=tasks[i].title;
+//     if(tasks[i].type=="Feature")
+//      radioFeature.checked=true;
+//     else
+//      radioBug.checked=true;
+//      listPrio.value=tasks[i].priority;
+//      listStatus.value=tasks[i].status;
+//      date.value=tasks[i].date;
+//      desc.value=tasks[i].description;
+// }
+
 
 
 
@@ -26,3 +40,8 @@ gp.setAttribute("draggable","true");
     </div>
     
         `
+
+        foreach(btn in button)
+        {
+
+        }

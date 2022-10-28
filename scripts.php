@@ -19,7 +19,7 @@
 
 
 
-    function getTasks()
+    function getTasks($nb)
     {
         //CODE HERE
         include('database.php');
@@ -27,33 +27,34 @@
         $query=mysqli_query($conn,$req);
         while($rows=mysqli_fetch_assoc($query))
         {
-            if($rows['statuss']==1)
+            
+            if($nb==1){$icon="fa fa-question-circle ";$color="danger";}
+            elseif($nb==2){$icon="fa fa-circle-notch fa-spin";$color="warning";}
+            elseif($nb==3){$icon="fa-regular fa-circle-check ";$color="success";}
+            if($rows['statuss']==$nb)
             {
+              $id=$rows['id'];
+            
+                echo '<a href="?id='.$id.'" class="text-decoration-none"><button  class="d-flex border-0 text-start bg-white w-100 mb-2 p-2 w-100 btn-task">
+                <div class="text-'.$color.' fs-4">
+                <i class="'.$icon.'"></i> 
+               </div>
+                     <div class="">
+                    <div class="fs-5 text-capitalize p-1">'.$rows['title'].'</div>
+                         <div class="m-1">
+                         <div class="text-secondary"> #'.$rows['id'].' created in'.$rows['task_datetime'].'</div>
+                             <div class="m-2" title="There is hain comments may affect initial criteria, just update this primary description accordingly.">'.$rows['description'].'</div>
+                             </div>
+                         <div class="m-3">
+                        <span class="btn btn-primary">'.$rows['priority'].'</span>
+                            <span class="btn btn-secondary text-black">'.$rows['type'].'</span>
+                            </div>
+                     </div>
+               </button></a>';
+            
 
             }
-
-
-
-       echo "<button class='d-flex border-0 text-start bg-white w-100 mb-2 p-2 w-100'>";
-       echo "<div>";
-             echo "<i class=' bi bi-question-circle text-success fs-5 pe-2'></i>";
-                echo "</div class=''>";
-            echo "<div class=''>";
-           echo "<div class='fs-5 text-capitalize p-1'>".$rows['title']."</div>";
-                echo "<div class=''>";
-                echo "<div class='text-secondary'> #1 created in ".$rows['task_datetime']."</div>";
-                    echo "<div class='' title='There is hain comments may affect initial criteria, just update this primary description accordingly.'>".$rows['description']."</div>";
-                    echo "</div>";
-                echo"<div class=''>";
-                echo"<span class='btn btn-primary'>".$rows['priority']."</span>";
-                    echo"<span class='btn btn-secondary text-black'>".$rows['type']."</span>";
-                    echo"</div>";
-            echo"</div>";
-      echo "</button>";
-    
-  
-
-    
+         
         //SQL SELECT
     }
     }
@@ -93,9 +94,12 @@
         //CODE HERE
         include('database.php');
 
-        $id=$_POST['task-id'];
+        $id=$_GET['id'];
+        // ['task-id']=$id
+
+        // [task_id]=$id;
     
-        $req="DELETE FROM tasks where id='$id' ";
+        $req="DELETE FROM tasks where id='$id'";
         $query=mysqli_query($conn,$req);
         //SQL DELETE
         $_SESSION['message'] = "Task has been deleted successfully !";

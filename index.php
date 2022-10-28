@@ -272,7 +272,7 @@
 							<?php
 
 								//PHP CODE HERE
-								getTasks();
+								getTasks(1);
 								//DATA FROM getTasks() FUNCTION
 
 
@@ -296,10 +296,9 @@
 							<!-- IN PROGRESS TASKS HERE -->
 							<?php
 								//PHP CODE HERE
-								if($rows['statuss']==2)
-								{
-									getTasks();
-								}
+								
+									getTasks(2);
+								
 								
 								//DATA FROM getTasks() FUNCTION
 							?>
@@ -321,10 +320,9 @@
 							<!-- DONE TASKS HERE -->
 							<?php
 								//PHP CODE HERE
-								if($rows['statuss']==3)
-								{
-									getTasks();
-								}
+								
+									getTasks(3);
+								
 								//DATA FROM getTasks() FUNCTION
 							?>
 						</div>
@@ -345,7 +343,7 @@
 	<div class="modal fade" id="modal-task">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="scripts.php" method="POST" id="form-task">
+				<form action="scripts.php" method="GET" id="form-task">
 					<div class="modal-header">
 						<h5 class="modal-title">Add Task</h5>
 						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
