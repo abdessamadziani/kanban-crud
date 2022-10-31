@@ -1,47 +1,104 @@
 
+function showInfo(id)
+{
+    // console.log(id)
+    document.getElementById("task-type-feature").removeAttribute("checked");
+    document.getElementById("task-type-bug").removeAttribute("checked");
+    document.getElementById("task-id").value=document.getElementById("task-id"+id).getAttribute("data");
+    if(document.getElementById("type"+id).getAttribute("data")=="1")
+    {
+        document.getElementById("task-type-feature").setAttribute("checked","true");
+    }
+    else if(document.getElementById("type"+id).getAttribute("data")=="2")
+    {
+        document.getElementById("task-type-bug").setAttribute("checked","true");
+    }
+    document.getElementById("task-title").value=document.getElementById("title"+id).getAttribute("data");
+    document.getElementById("task-priority").value=document.getElementById("priority"+id).getAttribute("data");
+    document.getElementById("task-description").value=document.getElementById("description"+id).getAttribute("data");
+    document.getElementById("task-date").value=document.getElementById("date"+id).getAttribute("data");
+    document.getElementById("task-status").value=document.getElementById("task-status"+id).getAttribute("data");
+    console.log(document.getElementById("type"+id).getAttribute("data"));
+   
+}
 
-let btn=document.querySelector(".btn-task");
-// btn.setAttribute("data-bs-toggle","modal") ;
-// btn.setAttribute("href","#modal-task");
+document.getElementById("btn-add-task").onclick=function()
+{
+    document.getElementById("task-type-feature").removeAttribute("checked");
+    document.getElementById("task-type-bug").removeAttribute("checked");
+    document.getElementById("task-id").value="";
+    document.getElementById("task-title").value="";
+    document.getElementById("task-priority").value="";
+    document.getElementById("task-description").value="";
+    document.getElementById("task-date").value="";
+    document.getElementById("task-status").value="";
+}
 
-btn.setAttribute("draggable","true");
 
-// btn.onclick()
-// {
  
-//     title.value=tasks[i].title;
-//     if(tasks[i].type=="Feature")
-//      radioFeature.checked=true;
-//     else
-//      radioBug.checked=true;
-//      listPrio.value=tasks[i].priority;
-//      listStatus.value=tasks[i].status;
-//      date.value=tasks[i].date;
-//      desc.value=tasks[i].description;
-// }
-
-
-
-
-    gp.innerHTML = `
-    <div class="">
-        <i class=" ${tasksStored[i].status==1 ? "bi bi-question-circle text-success fs-5 pe-2" :tasksStored[i].status==2 ? "fa-solid fa-circle-notch text-success fs-5 pe-2":tasksStored[i].status==3 ? "bi bi-check-circle text-success fs-5 pe-2":"" } "></i> 
-    </div>
-    <div class="">
-        <div class="fs-5 text-capitalize p-1">${tasksStored[i].title}</div>
-        <div class="">
-            <div class="text-secondary">${i+1}# created in ${tasksStored[i].date}</div>
-            <div class="" title="There is hardly anything more frustrating than having to look for current requirements in tens of comments under the actual description or having to decide which commenter is actually authorized to change the requirements. The goal here is to keep all the up-to-date requirements and details in the main/primary description of a task. Even though the information in comments may affect initial criteria, just update this primary description accordingly.">${tasksStored[i].description}</div>
-        </div>
-        <div class="">
-            <span class="btn btn-primary">${tasksStored[i].priority}</span>
-            <span class="btn btn-secondary text-black">${tasksStored[i].type}</span>
-        </div>
-    </div>
+  
     
-        `
+//drag drop place
+   let listitems=document.querySelectorAll(".tt")
+   let lists=document.querySelectorAll(".ls")
 
-        foreach(btn in button)
-        {
+let draggeditem=null;
+for(let i=0;i<listitems.length;i++)
+{
+    let item = listitems[i];
+    item.addEventListener("dragstart",function()
+    {
+        console.log("dragstart")
+        draggeditem=item;
+        setTimeout(() => {
+            draggeditem.style.display="none"
+            // console.log(tasks[i].status)
+            // tasks[i].status="2";
+            // console.log(tasks[i].status)
 
-        }
+
+        },0);
+    })
+    item.addEventListener("dragend",function()
+    {
+        console.log("dragend")
+
+        setTimeout(() => {
+            draggeditem.style.display="block";
+
+        },0);
+        //  draggeditem=null;
+
+    })
+
+
+    for(let j=0;j<lists.length;j++)
+    {
+         let list=lists[j];
+
+         list.addEventListener("dragover",function(e)
+         {
+            e.preventDefault();
+         })
+         list.addEventListener("dragenter",function(e)
+         {
+            e.preventDefault();
+         })
+         list.addEventListener("drop",function()
+         {
+            this.appendChild(draggeditem);
+         })
+    }
+
+
+}
+    
+
+
+
+
+
+
+
+
+ 

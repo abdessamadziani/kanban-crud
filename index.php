@@ -224,7 +224,7 @@
 				</div>
 				
 				<div class="ms-auto">
-				<a href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill"><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
+				<a id ="btn-add-task" href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill"><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
 				</div>
 			</div>
 			
@@ -258,7 +258,7 @@
 				<div class="col-xl-4 col-lg-6 ">
 					<div class="panel panel-inverse bg-transparent ">
 						<div class="panel-heading">
-							<h4 class="panel-title">To do (<span id="to-do-tasks-count">0</span>)</h4>
+							<h4 class="panel-title">To do (<span id="to-do-tasks-count"><?php countDone(1) ;?></span>)</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -266,7 +266,7 @@
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>
 							</div>
 						</div>
-						<div class="list-group-item card-item bg-transparent pp" id="to-do-tasks">
+						<div class="list-group-item card-item bg-transparent pp ls" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
 							
 							<?php
@@ -282,9 +282,9 @@
 					</div>
 				</div>
 				<div class="col-xl-4 col-lg-6">
-					<div class="panel panel-inverse">
+					<div class="panel panel-inverse bg-transparent">
 						<div class="panel-heading">
-							<h4 class="panel-title">In Progress (<span id="in-progress-tasks-count">0</span>)</h4>
+							<h4 class="panel-title">In Progress (<span id="in-progress-tasks-count"><?php countDone(2) ;?></span>)</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -292,12 +292,12 @@
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>
 							</div>
 						</div>
-						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="in-progress-tasks">
+						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0 bg-transparent pp ls" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
 							<?php
 								//PHP CODE HERE
 								
-									getTasks(2);
+									    getTasks(2);
 								
 								
 								//DATA FROM getTasks() FUNCTION
@@ -306,9 +306,9 @@
 					</div>
 				</div>
 				<div class="col-xl-4 col-lg-6">
-					<div class="panel panel-inverse">
+					<div class="panel panel-inverse bg-transparent">
 						<div class="panel-heading">
-							<h4 class="panel-title">Done (<span id="done-tasks-count">0</span>)</h4>
+							<h4 class="panel-title">Done (<span id="done-tasks-count"><?php countDone(3) ;?></span>)</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -316,12 +316,12 @@
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>
 							</div>
 						</div>
-						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="done-tasks">
+						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0 bg-transparent pp ls" id="done-tasks">
 							<!-- DONE TASKS HERE -->
 							<?php
 								//PHP CODE HERE
 								
-									getTasks(3);
+									 getTasks(3);
 								
 								//DATA FROM getTasks() FUNCTION
 							?>
@@ -340,10 +340,11 @@
 	<!-- END #app -->
 	
 	<!-- TASK MODAL -->
+
 	<div class="modal fade" id="modal-task">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="scripts.php" method="GET" id="form-task">
+				<form action="scripts.php" method="POST" id="form-task">
 					<div class="modal-header">
 						<h5 class="modal-title">Add Task</h5>
 						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
@@ -352,6 +353,7 @@
 							<!-- This Input Allows Storing Task Index  -->
 							<input type="" name="task-id" id="task-id">
 							<div class="mb-3">
+							
 								<label class="form-label">Title</label>
 								<input type="text" class="form-control"  name="task-title"  id="task-title"/>
 							</div>
@@ -359,20 +361,19 @@
 								<label class="form-label">Type</label>
 								<div class="ms-3">
 									<div class="form-check mb-1">
-										<input class="form-check-input" name="task-type" type="radio" value="Feature" id="task-type-feature"/>
+										<input class="form-check-input" name="task-type" type="radio" value="1" id="task-type-feature"/>
 										<label class="form-check-label" for="task-type-feature">Feature</label>
 									</div>
 									<div class="form-check">
-										<input class="form-check-input" name="task-type" type="radio" value="Bug" id="task-type-bug"/>
+										<input class="form-check-input" name="task-type" type="radio" value="2" id="task-type-bug"/>
 										<label class="form-check-label" for="task-type-bug">Bug</label>
 									</div>
 								</div>
-								
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Priority</label>
 								<select class="form-select"  name="task-priority"  id="task-priority">
-									<option value="">Please select</option>
+									<!-- <option value="">Please select</option> -->
 									<option value="1">Low</option>
 									<option value="2">Medium</option>
 									<option value="3">High</option>
@@ -382,7 +383,7 @@
 							<div class="mb-3">
 								<label class="form-label">Status</label>
 								<select class="form-select"  name="task-status" id="task-status">
-									<option value="">Please select</option>
+									<!-- <option value="">Please select</option> -->
 									<option value="1">To Do</option>
 									<option value="2">In Progress</option>
 									<option value="3">Done</option>
@@ -390,7 +391,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Date</label>
-								<input type="date" class="form-control" name="task-date" id="task-date"/>
+								<input type="date" class="form-control" name="task-date"  id="task-date" />
 							</div>
 							<div class="mb-0">
 								<label class="form-label">Description</label>
@@ -402,7 +403,7 @@
 						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
 						<button type="submit" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn">Delete</a>
 						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</a>
-						<button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>
+						<button  type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>
 					</div>
 				</form>
 			</div>
