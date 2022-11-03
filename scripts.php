@@ -21,15 +21,20 @@
            
         //CODE HERE
         include('database.php');
+
+    
+
+   
         $req="SELECT tasks.id,title,prioritises.name as 'priority',statuses.id as 'statuss',types.name as 'type',tasks.description,tasks.task_datetime, tasks.priority_id,tasks.type_id    FROM tasks,statuses,types,prioritises WHERE status_id=statuses.id and type_id=types.id and priority_id=prioritises.id ";
         $query=mysqli_query($conn,$req);
         while($rows=mysqli_fetch_assoc($query))
         {
             
             
-            // if($nb==1){$icon="fa fa-question-circle ";$color="danger";}
-            // elseif($nb==2){$icon="fa fa-circle-notch fa-spin";$color="warning";}
-            // elseif($nb==3){$icon="fa-regular fa-circle-check ";$color="success";}
+            if($nb==1){$icon="fa fa-question-circle ";$color="danger";}
+            elseif($nb==2){$icon="fa fa-circle-notch fa-spin";$color="warning";}
+            elseif($nb==3){$icon="fa-regular fa-circle-check ";$color="success";}
+            // fa fa-circle-notch fa-spin
              if($rows['statuss']==$nb)
              { 
           
@@ -39,7 +44,7 @@
                 <button  draggable="true" data-bs-toggle="modal"   href="#modal-task"  class="d-flex border-0 text-start bg-white w-100 mb-2 p-2 w-100 btn-task tt" onclick="showInfo('.$id.')">
                 <input type="hidden" name="task-id" data="'.$rows['id'].'" id="task-id'.$id.'">
                 <div class="" fs-4">
-                <i class=""></i> 
+                <i class=" text-'.$color.' '.$icon.' fs-2 p-2"></i> 
                </div>
                      <div class="">
                     <div id="title'.$id.'" data="'.$rows['title'].'" class="fs-5 text-capitalize p-1">'.$rows['title'].'</div>
@@ -58,9 +63,11 @@
             
 
              }
+            }
          
         //SQL SELECT
-    }
+        
+    
     }
     function countDone($status)
     {
@@ -78,7 +85,6 @@
         //CODE HERE
         include('database.php');
 
-
         $id=htmlspecialchars($_POST['task-id']);
         $title= htmlspecialchars($_POST['task-title']);
         $type=$_POST['task-type'];
@@ -91,7 +97,10 @@
         //SQL INSERT
         $_SESSION['message'] = "Task has been added successfully !";
 		header('location: index.php');
-    }
+        
+        }
+    
+    
 
     function updateTask()
     {

@@ -15,7 +15,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="assets/css/vendor.min.css" rel="stylesheet" />
 	<link href="assets/css/default/app.min.css" rel="stylesheet" />
-	<link href="assets/css/style.css" rel="stylesheet" />
+	<link href="style.css" rel="stylesheet" />
+
 
 
 	<!-- ================== END core-css ================== -->
@@ -351,11 +352,15 @@
 					</div>
 					<div class="modal-body">
 							<!-- This Input Allows Storing Task Index  -->
-							<input type="" name="task-id" id="task-id">
-							<div class="mb-3">
-							
+							<input type="hidden" name="task-id" id="task-id">
+							<div class=" mb-3 ">
 								<label class="form-label">Title</label>
-								<input type="text" class="form-control"  name="task-title"  id="task-title"/>
+								<input type="text"  class="  form-control "  name="task-title"  id="task-title" required/>
+								<div class="d-flex">
+								<i id="hand" class="hand text-danger fa-solid fa-hand pe-2"></i>
+								 <small  id="titleinvalid" class="text-danger">Enter Task's Title</small>
+								</div>
+								
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Type</label>
@@ -377,26 +382,36 @@
 									<option value="1">Low</option>
 									<option value="2">Medium</option>
 									<option value="3">High</option>
-									<option value="4">Critical</option>
+									<option value="4" selected>Critical</option>
 								</select>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Status</label>
 								<select class="form-select"  name="task-status" id="task-status">
 									<!-- <option value="">Please select</option> -->
-									<option value="1">To Do</option>
+									<option value="1" selected>To Do</option>
 									<option value="2">In Progress</option>
 									<option value="3">Done</option>
 								</select>
 							</div>
-							<div class="mb-3">
+							<div class=" mb-3 ">
 								<label class="form-label">Date</label>
-								<input type="date" class="form-control" name="task-date"  id="task-date" />
+								<input type="date" class="form-control " name="task-date"  id="task-date" required />
+								<div class="d-flex">
+								<i id="hand-date" class=" hand text-danger fa-solid fa-hand pe-2"></i>
+								 <small  id="dateinvalid" class="text-danger">Enter Task's date</small>
+								</div>
 							</div>
-							<div class="mb-0">
-								<label class="form-label">Description</label>
-								<textarea class="form-control" rows="10" name="task-description" id="task-description"></textarea>
+
+							<div class=" mb-2 ">
+								<label class="  form-label">Description</label>
+								<textarea class="form-control "  rows="10" name="task-description" id="task-description" required></textarea>
+								<div class="d-flex">
+								<i id="hand-desc" class=" hand text-danger fa-solid fa-hand pe-2"></i>
+								 <small  id="descinvalid" class="text-danger">Enter Task's Description</small>
+								</div>
 							</div>
+							
 						
 					</div>
 					<div class="modal-footer">

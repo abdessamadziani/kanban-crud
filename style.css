@@ -1,0 +1,53 @@
+.pp 
+{
+    padding: 0;
+}
+
+ /* .s
+{
+    border-color: rgb(89, 231, 23);
+    box-shadow: 0 0 10px greenyellow;
+
+}
+.r
+{
+    border-color: rgb(223, 33, 33);
+    box-shadow: 0 0 10px red;
+
+}  */
+
+/* 
+.fk.error small
+{
+  color :red;
+} */
+.hand
+{
+    display: none;
+}
+#titleinvalid
+{
+    display: none;
+
+}
+
+#dateinvalid
+{
+    display: none;
+
+}
+
+#descinvalid
+{
+    display: none;
+
+} 
+
+.my-card 
+{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50% ,-50%);
+  
+}
